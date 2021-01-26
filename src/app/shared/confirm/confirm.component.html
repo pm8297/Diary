@@ -1,0 +1,17 @@
+<div class="icon">
+  <mat-icon (click)="closeDialog()">close</mat-icon>
+</div>
+<div>
+  <p>{{ data.message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button [mat-dialog-close]="false">No Thanks</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</div>

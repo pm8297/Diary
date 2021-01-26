@@ -1,0 +1,19 @@
+.card-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid grey;
+  color: white;
+  background-color: gray;
+  border-radius: 20px;
+  margin: 3px;
+  cursor: pointer;
+  min-width: 10px;
+}
+.card-tag:hover {
+  color: #ffff;
+  background: #f69662;
+  transition: 0.3s;
+  border: 1px solid #f69662;
+}

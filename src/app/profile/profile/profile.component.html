@@ -1,0 +1,52 @@
+<div class="container">
+  <img
+    [src]="
+      profiles?.image ||
+      'https://cdn1.vectorstock.com/i/thumb-large/22/05/male-profile-picture-vector-1862205.jpg'
+    "
+  />
+  <div>
+    <h2 class="nameAuthor">{{ profiles?.username }}</h2>
+    <i> "{{ profiles?.bio || "Welcome to my Profile" }}" </i>
+  </div>
+
+  <button *ngIf="isUser == true" routerLink="/settings" mat-flat-button>
+    <span class="material-icons"> settings </span>
+    Edit Profile Settings
+  </button>
+
+  <button
+    *ngIf="isUser == false"
+    mat-flat-button
+    (click)="toggleFollow(userFollow)"
+    [color]="userFollow ? '' : 'primary'"
+    mat-button
+  >
+    <span class="material-icons">
+      {{ userFollow ? "person_remove" : "person_add_alt_1" }} </span
+    >{{ userFollow ? "Unfollow" : "Follow" }} User
+  </button>
+</div>
+
+<div class="contentContainer">
+  <div class="article">
+    <mat-tab-group (selectedIndexChange)="changTab($event)">
+      <mat-tab label="My Articles">
+        <div class="articleList">
+          <app-articles-list
+            [dataArticles]="authorArt"
+            (emitPaging)="changePaging($event, 'myArticle')"
+          ></app-articles-list>
+        </div>
+      </mat-tab>
+      <mat-tab label="Favorited Articles">
+        <div class="articleList">
+          <app-articles-list
+            [dataArticles]="authFa"
+            (emitPaging)="changePaging($event, 'favoriteArticle')"
+          ></app-articles-list>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

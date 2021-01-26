@@ -1,0 +1,53 @@
+<section id="banner" *ngIf="!isLogged">
+  <div class="cented">
+    <h2>Share your knowledge. It is a way to achieve immortality</h2>
+    <h3>"Let's Share, sharing is caring"</h3>
+  </div>
+</section>
+<div class="bg">
+  <div class="container">
+    <div class="article">
+      <mat-tab-group
+        [(selectedIndex)]="activeTab"
+        (selectedIndexChange)="changTab($event)"
+      >
+        <mat-tab label="Your Feed" *ngIf="isLogged">
+          <div>
+            <app-articles-list
+              [dataArticles]="feedArticle"
+              (emitPaging)="changePaging($event, 'articleFeed')"
+            ></app-articles-list>
+          </div>
+        </mat-tab>
+        <mat-tab label="Global Feed">
+          <div>
+            <app-articles-list
+              [dataArticles]="global"
+              (emitPaging)="changePaging($event, 'articleGlobal')"
+            ></app-articles-list>
+          </div>
+        </mat-tab>
+        <mat-tab label="#{{ nameTag }}" *ngIf="isShowTabTag">
+          <div>
+            <app-articles-list
+              [dataArticles]="articleTag"
+              (emitPaging)="changePaging($event, 'articleTags')"
+            ></app-articles-list>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="list-tag">
+      <div class="popular-tag">
+        <p><b>Popular Tags</b></p>
+        <div class="point">
+          <app-tags
+            *ngFor="let item of listTag"
+            [nameTag]="item"
+            (click)="change(item)"
+          ></app-tags>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

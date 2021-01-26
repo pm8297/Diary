@@ -1,0 +1,92 @@
+<div class="background">
+  <div class="layout">
+    <h2>Your Settings</h2>
+    <form *ngIf="form; else loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div formGroupName="user">
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="image"
+            class="form-control"
+            placeholder="URL of profile picture"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="username"
+            class="form-control"
+            placeholder="Username"
+          />
+          <small
+            class="danger"
+            *ngIf="
+              form.controls.user['controls'].username.errors?.required &&
+              form.controls.user['controls'].username.touched
+            "
+            >Username can't be blank.</small
+          >
+        </div>
+        <div class="form-group">
+          <textarea
+            formControlName="bio"
+            class="form-control"
+            placeholder="Short bio about you"
+            rows="8"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="Email"
+          />
+          <small
+            class="danger"
+            *ngIf="
+              form.controls.user['controls'].email.errors?.required &&
+              form.controls.user['controls'].email.touched
+            "
+            >Email can't be blank.</small
+          >
+          <small
+            class="danger"
+            *ngIf="form.controls.user['controls'].email.errors?.pattern"
+            >Must be Email Pattern, include at least 1 character and 1 number.
+            Ex: a12@gmail.com</small
+          >
+        </div>
+        <div class="form-group">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="Confirm your password or a new one."
+          />
+          <small
+            class="danger"
+            *ngIf="
+              form.controls.user['controls'].password.errors?.required &&
+              form.controls.user['controls'].password.touched
+            "
+            >Password can't be blank.</small
+          >
+          <small
+            class="danger"
+            *ngIf="form.controls.user['controls'].password.errors?.minlength"
+            >Length must be 8.</small
+          >
+        </div>
+        <small class="danger" *ngIf="errEmail">Email {{ errEmail }}.</small>
+        <small class="danger" *ngIf="errUsername"
+          >Username {{ errUsername }}.</small
+        >
+      </div>
+      <button [disabled]="!form.valid" mat-flat-button color="primary">
+        Update Settings
+      </button>
+    </form>
+  </div>
+  <ng-template #loading> Loading Form... </ng-template>
+</div>

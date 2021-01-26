@@ -1,0 +1,6 @@
+.icon {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-bottom: 5px;
+  cursor: pointer;
+}

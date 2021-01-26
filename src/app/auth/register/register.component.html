@@ -1,0 +1,86 @@
+<div class="layout">
+  <div class="container">
+    <mat-card class="reg-form">
+      <h2>REGISTER</h2>
+      <a routerLink="/login">Have an account ?</a>
+      <form [formGroup]="form" (ngSubmit)="register()">
+        <div formGroupName="user" class="form">
+          <span>👨‍💼</span
+          ><mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" />
+            <small
+              class="text-danger"
+              *ngIf="
+                form.controls.user['controls'].username.errors?.required &&
+                form.controls.user['controls'].username.touched
+              "
+              >Username is required</small
+            >
+          </mat-form-field>
+
+          <span>📧</span
+          ><mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+            <small
+              class="text-danger"
+              *ngIf="
+                form.controls.user['controls'].email.errors?.required &&
+                form.controls.user['controls'].email.touched
+              "
+              >Email is required</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="form.controls.user['controls'].email.errors?.pattern"
+              >Must fill pattern Email</small
+            >
+          </mat-form-field>
+
+          <span>🗝</span
+          ><mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              formControlName="password"
+              matInput
+              [type]="hide ? 'password' : 'text'"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <small
+              class="text-danger"
+              *ngIf="
+                form.controls.user['controls'].password.errors?.required &&
+                form.controls.user['controls'].password.touched
+              "
+              >Password is required</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="form.controls.user['controls'].password.errors?.minlength"
+              >Length must 8</small
+            >
+          </mat-form-field>
+
+          <small *ngIf="error" class="text-danger">{{ error }}.</small>
+          <button
+            [disabled]="!form.valid"
+            mat-flat-button
+            color="primary"
+            class="button"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

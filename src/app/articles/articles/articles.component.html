@@ -1,0 +1,112 @@
+<div class="layout">
+  <div class="background">
+    <div class="container">
+      <h2>{{ article?.title }}</h2>
+      <div class="info">
+        <img
+          class="img-profile"
+          [src]="
+            article?.author.image ||
+            'https://cdn1.vectorstock.com/i/thumb-large/22/05/male-profile-picture-vector-1862205.jpg'
+          "
+        />
+        <div class="info-detail">
+          <p [routerLink]="['/', 'profile', authorCurrent]">
+            {{ article?.author.username }}
+          </p>
+          <small> {{ article?.createdAt | date: "longDate" }}</small>
+        </div>
+        <div class="info-detail" *ngIf="canEdit">
+          <button
+            [routerLink]="['/', 'edit', slug]"
+            class="edit"
+            mat-raised-button
+          >
+            <span class="material-icons"> create </span>Edit Article
+          </button>
+          <button mat-flat-button color="warn" (click)="articleDelete()">
+            <span class="material-icons"> delete_outline </span>Delete Article
+          </button>
+        </div>
+        <div class="info-detail follow" *ngIf="!canEdit">
+          <button
+            mat-flat-button
+            (click)="toggleFollow(userFollow)"
+            [color]="userFollow ? '' : 'primary'"
+            mat-button
+          >
+            <span class="material-icons">
+              {{ userFollow ? "person_remove" : "person_add_alt_1" }} </span
+            >{{ userFollow ? "Unfollow" : "Follow" }} User
+          </button>
+
+          <app-btn-favorite
+            [numHeart]="article && article.favoritesCount"
+            [show]="isShow"
+            (click)="
+              liked(article && article.slug, article && article.favorited)
+            "
+            [isFavorite]="article && article.favorited"
+          ></app-btn-favorite>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg">
+    <div class="body-article">
+      <p>
+        <b>{{ article?.description }}</b>
+      </p>
+      <p [innerHTML]="article?.body"></p>
+      <div class="tag">
+        <app-tags
+          *ngFor="let tag of article?.tagList"
+          [nameTag]="tag"
+        ></app-tags>
+      </div>
+    </div>
+    <div class="comment">
+      <div *ngIf="isLogged">
+        <form [formGroup]="form" class="body-comment" (ngSubmit)="onSubmit()">
+          <mat-form-field class="example-full-width" formGroupName="comment">
+            <mat-label>Leave a comment</mat-label>
+            <textarea
+              formControlName="body"
+              matInput
+              placeholder="It makes me feel..."
+            ></textarea>
+          </mat-form-field>
+          <div class="footer">
+            <img
+              width="30px"
+              [src]="
+                imgCurrent ||
+                'https://cdn1.vectorstock.com/i/thumb-large/22/05/male-profile-picture-vector-1862205.jpg'
+              "
+            />
+            <button
+              [disabled]="
+                !form.valid && form.controls.comment['controls'].body.pristine
+              "
+              mat-flat-button
+              color="primary"
+            >
+              Post Comment
+            </button>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="!isLogged" class="permisson">
+        <a [routerLink]="['/login']">Sign in</a> or
+        <a [routerLink]="['/register']">sign up</a> to add comments on this
+        article.
+      </div>
+      <app-comment
+        *ngFor="let comment of comments"
+        [comment]="comment"
+        (deleteComment)="deleteComment($event)"
+      >
+      </app-comment>
+    </div>
+  </div>
+</div>

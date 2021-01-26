@@ -1,0 +1,18 @@
+<button *ngIf="show" mat-icon-button [color]="isFavorite ? 'warn' : ''">
+  <mat-icon *ngIf="isFavorite == true">favorite</mat-icon>
+  <span *ngIf="isFavorite == false"
+    ><i class="fas fa-heart-broken fa-lg"></i
+  ></span>
+  {{ numHeart }}
+</button>
+
+<button
+  *ngIf="show == false"
+  mat-flat-button
+  [color]="isFavorite ? '' : 'warn'"
+  mat-button
+>
+  <mat-icon *ngIf="isFavorite == false">favorite</mat-icon>
+  <span *ngIf="isFavorite == true"><i class="fas fa-heart-broken"></i></span>
+  {{ isFavorite ? "Unfavorite" : "Favorite" }} Article
+</button>

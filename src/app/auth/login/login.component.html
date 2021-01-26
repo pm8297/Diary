@@ -1,0 +1,67 @@
+<div class="layout">
+  <div class="container">
+    <mat-card class="signIn-form">
+      <h2>SIGN IN</h2>
+      <a routerLink="/register">Need an account ?</a>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <div formGroupName="user" class="form">
+          <span>📧</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+            <small
+              class="text-danger"
+              *ngIf="
+                form.controls.user['controls'].email.errors?.required &&
+                form.controls.user['controls'].email.touched
+              "
+              >Email is required</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="form.controls.user['controls'].email.errors?.pattern"
+              >Must fill pattern Email</small
+            >
+          </mat-form-field>
+          <span>🗝</span
+          ><mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <small
+              class="text-danger"
+              *ngIf="
+                form.controls.user['controls'].password.errors?.required &&
+                form.controls.user['controls'].password.touched
+              "
+              >Password is required</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="form.controls.user['controls'].password.errors?.minlength"
+              >Length must be 8.</small
+            >
+          </mat-form-field>
+          <small *ngIf="error" class="text-danger"
+            >Email or password {{ error }}.</small
+          >
+          <button [disabled]="!form.valid" mat-flat-button color="primary">
+            Sign In
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

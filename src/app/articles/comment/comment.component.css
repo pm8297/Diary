@@ -1,0 +1,33 @@
+.container {
+  margin: 20px 0 20px 0;
+  min-height: 50px;
+  border: 1px solid #e5e5e5;
+  width: 60%;
+  padding: 10px;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #e5e5e5;
+  justify-content: space-between;
+}
+.inner {
+  display: flex;
+  align-items: center;
+}
+.username:hover {
+  cursor: pointer;
+  color: #f69662;
+}
+button {
+  margin-left: auto;
+  order: 2;
+}
+img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+small {
+  color: #bdbcb3;
+}

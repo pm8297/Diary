@@ -1,0 +1,46 @@
+.container {
+  background-image: url("/assets/3.jpg");
+  background-size: cover;
+  background-position: center center;
+  color: black;
+  text-align: center;
+  height: 280px;
+}
+.contentContainer {
+  padding: 0 10%;
+  min-height: calc(100vh - 120px);
+  background-image: url("../../../assets/5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: 280px;
+}
+mat-tab-group {
+  box-shadow: 3px 5px 15px -7px rgba(0, 0, 0, 0.75);
+  min-height: 90vh;
+}
+.nameAuthor {
+  font-family: "Dancing Script", cursive;
+}
+.pag {
+  display: flex;
+  justify-content: center;
+}
+img {
+  border-radius: 50%;
+  padding: 15px 0 15px 0;
+  width: 120px;
+  height: 120px;
+}
+.btn-editProfile {
+  margin-left: 70%;
+}
+.btn-editProfile:hover {
+  background-color: #f69662;
+  color: #fff;
+  border: 1px solid #f69662;
+  transition: 0.4s linear;
+}
+
+button {
+  margin-top: 10px;
+}

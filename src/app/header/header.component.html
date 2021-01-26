@@ -1,0 +1,57 @@
+<header>
+  <div class="container">
+    <div class="brand">
+      <h1 routerLink="/home">
+        Diary
+        <span class="highline">Online</span>
+      </h1>
+    </div>
+    <nav *ngIf="!isLogged; else show">
+      <ul class="header-list">
+        <li>
+          <a routerLinkActive="active" routerLink="/home">🏡Home</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/login">📥Login</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/register">➕Register</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<ng-template #show>
+  <nav>
+    <ul class="header-list">
+      <li>
+        <a routerLink="/home" routerLinkActive="active">🏡Home</a>
+      </li>
+      <li>
+        <a routerLink="/edit" routerLinkActive="active">✏️New Article</a>
+      </li>
+      <li>
+        <a routerLink="/settings" routerLinkActive="active">⚙️Settings</a>
+      </li>
+      <li>
+        <a
+          class="avatar-link"
+          routerLinkActive="active"
+          [routerLink]="['/', 'profile', username]"
+        >
+          <img
+            class="img-avarta"
+            [src]="
+              image ||
+              'https://cdn1.vectorstock.com/i/thumb-large/22/05/male-profile-picture-vector-1862205.jpg'
+            "
+          />
+          {{ username }}
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a href="#" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </nav>
+</ng-template>

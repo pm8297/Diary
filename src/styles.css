@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.success {
+  background: #affc41;
+  color: #495057;
+  font-weight: 500;
+}
+.error {
+  background: #f94144;
+  color: #ffff;
+  font-weight: 500;
+}
+
+.mat-flat-button.mat-primary:hover {
+  background-color: #ffff;
+  color: #f69662;
+  border: 1px solid #f69662;
+  transition: 0.4s linear;
+}
+
+.mat-flat-button.mat-primary {
+  color: #f0fff3;
+  background-color: #f69662;
+}
+ .mat-flat-button.mat-warn:hover {
+   background-color: #a5a58d ;
+   transition: 0.4s linear;
+ }
+
+ .mat-flat-button {
+  background-color: #a5a58d;
+  color: #ffff;
+}
+.mat-flat-button:hover {
+  background-color: #f69662;
+  transition: 0.4s linear;
+}
+
+
+

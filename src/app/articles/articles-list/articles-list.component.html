@@ -1,0 +1,51 @@
+<div *ngIf="dataArticles; else loading">
+  <div *ngFor="let article of dataArticles.articles">
+    <mat-card>
+      <div class="row mg-bottom">
+        <div class="row">
+          <img [src]="article.author.image" />
+          <div>
+            <span [routerLink]="['/', 'profile', article.author.username]"
+              >{{ article.author.username }}
+            </span>
+            <mat-card-subtitle
+              >{{ article.createdAt | date }}
+            </mat-card-subtitle>
+          </div>
+        </div>
+        <app-btn-favorite
+          [numHeart]="article.favoritesCount"
+          (click)="changeHeart(article.slug, article.favorited)"
+          [isFavorite]="article.favorited"
+        ></app-btn-favorite>
+      </div>
+      <div
+        [routerLink]="['/', 'articles', article.slug]"
+        class="content-articles"
+      >
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <mat-card-content>
+          <p [innerHTML]="article.body"></p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a>Read more...</a>
+          <div class="tag">
+            <app-tags
+              [nameTag]="tag"
+              *ngFor="let tag of article.tagList"
+            ></app-tags>
+          </div>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="loading">Loading articles...</div>
+</ng-template>
+<div class="pag">
+  <app-pagination
+    [totalItem]="dataArticles && dataArticles.articlesCount"
+    (emitPaging)="changePaging($event)"
+  ></app-pagination>
+</div>

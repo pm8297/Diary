@@ -1,0 +1,102 @@
+.container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+}
+header {
+  background-color: #f69662;
+}
+.img-avarta {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.avatar-link {
+  display: flex;
+  align-items: center;
+}
+header h1 {
+  font-family: "Special Elite", cursive;
+  font-size: 34px;
+  color: #333;
+}
+header a {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #333;
+  font-weight: 700;
+  text-decoration: none;
+}
+header .brand {
+  width: 40%;
+}
+header h1 {
+  cursor: pointer;
+}
+header h1:focus {
+  outline: 0;
+}
+.header-inner > nav {
+  width: 60%;
+}
+.header-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header nav li {
+  list-style: none;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+.highline,
+header .current a {
+  color: #ffff;
+}
+header a:hover {
+  color: #ffff;
+  transition: 0.4s linear;
+}
+.active {
+  border-bottom: 3px solid #fff;
+}
+
+@media only screen and (max-width:420px) {
+  header h1 {
+    font-size: 20px;
+  }
+  header nav li a{
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 20px;
+    margin :0
+  }
+  li:first-child {
+    display: none;
+  }
+  li {
+    padding: 0;
+    margin: -10px
+  }
+  ul {
+    padding :0;
+    margin : 0
+  }
+}
+  @media only screen and (max-width:380px) {
+    .container{
+      padding: 7px
+    }
+    header nav li a{
+      font-size: 12px;
+    }
+  }
+
+
